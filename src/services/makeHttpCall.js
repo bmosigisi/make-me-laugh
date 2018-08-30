@@ -2,7 +2,6 @@ import axios from 'axios';
 import { stringify } from 'querystring';
 
 const defaultOptions = {
-  method: 'GET',
   headers: {},
   queryParams: null,
 };
@@ -19,12 +18,12 @@ export default function makeHttpCall(
   let fullPath = `${rootPath}${url}`;
   if (options.queryParams) {
     const queryString = stringify(options.queryParams);
-    fullPath = `${url}?${queryString}`;
+    fullPath = `${fullPath}?${queryString}`;
   }
 
   return axios({
     url: fullPath,
-    method: options.method,
+    method: options.method || 'GET',
     headers: options.headers,
   }).then(response => ({
     data: response.data,
@@ -32,6 +31,6 @@ export default function makeHttpCall(
   })).catch(err => ({
     data: null,
     success: false,
-    message: err.statusText,
+    message: err.message,
   }));
 }

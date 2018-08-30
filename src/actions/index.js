@@ -8,12 +8,29 @@ const createRequestTypes = (base) => {
   }, {});
 };
 
-export const FETCH_CATEGORIES = createRequestTypes('FETCH_CATEGORIES');
-export const FETCH_JOKE = createRequestTypes('FETCH_JOKE');
+const FETCH_CATEGORIES = createRequestTypes('FETCH_CATEGORIES');
+const FETCH_JOKE = createRequestTypes('FETCH_JOKE');
 
-// Action creators
-export const triggerFetchJoke = () => {
+export const actionTypes = {
+  FETCH_CATEGORIES,
+  FETCH_JOKE,
+  OPEN_DIALOG: 'OPEN_DIALOG',
+  SET_ACTIVE_CATEGORY: 'SET_ACTIVE_CATEGORY',
+};
+
+// --- Action creators ----
+// Adopts a convention where every action contains two keys: type and a payload object.
+
+export const triggerFetchJoke = (category) => {
   return {
-    type: FETCH_JOKE.BEGIN,
+    type: actionTypes.FETCH_JOKE.BEGIN,
+    payload: category,
+  };
+};
+
+export const triggerOpenDialog = (payload) => {
+  return {
+    type: actionTypes.OPEN_DIALOG,
+    payload,
   };
 };

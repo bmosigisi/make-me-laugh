@@ -1,4 +1,4 @@
-import makeHttpCall from './index';
+import makeHttpCall from './makeHttpCall';
 
 /**
  * Get listing of all categories from API.

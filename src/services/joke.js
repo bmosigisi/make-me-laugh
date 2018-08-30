@@ -1,4 +1,4 @@
-import makeHttpCall from './index';
+import makeHttpCall from './makeHttpCall';
 
 /**
  * @param {String} category

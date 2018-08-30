@@ -9,20 +9,6 @@ export default createMuiTheme({
     secondary: pink,
     error: red,
   },
-  overrides: {
-    MuiIconButton: {
-      root: {
-        '&:hover': {
-          backgroundColor: 'inherit',
-        },
-      },
-    },
-    MuiButton: {
-      root: {
-        minWidth: 88,
-      },
-    },
-  },
   space: {
     unit: 4,
   },

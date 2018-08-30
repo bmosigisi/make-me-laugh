@@ -1,20 +1,21 @@
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { categoriesFetching } from '../selectors';
+import Categories from '../containers/Categories';
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
+    padding: theme.space.unit * 4,
   },
-};
+});
 
 const mapStateToProps = (state) => {
   return {
@@ -34,7 +35,7 @@ class App extends Component {
     return (
       <div className={classes.root}>
         { loading && <CircularProgress /> }
-        { !loading && <Typography> Hey there laughter </Typography> }
+        { !loading && <Categories /> }
       </div>
     );
   }

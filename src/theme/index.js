@@ -23,4 +23,7 @@ export default createMuiTheme({
       },
     },
   },
+  space: {
+    unit: 4,
+  },
 });

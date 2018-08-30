@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 /* Category selectors */
 export const categories = state => state.getIn(['category', 'categories']);
 export const activeCategory = state => state.getIn(['category', 'active']);
+export const categoriesFetching = state => state.getIn(['category', 'isFetching']);
 
 /** Joke selectors */
 export const jokes = state => state.getIn(['joke', 'jokes']);

@@ -1,33 +1,47 @@
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { CircularProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const styles = (theme) => ({
+import { categoriesFetching } from '../selectors';
+import Categories from '../containers/Categories';
+
+const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
+    padding: theme.space.unit * 4,
+  },
+  progressIcon: {
+    marginTop: theme.space.unit * 10,
   },
 });
 
+const mapStateToProps = (state) => {
+  return {
+    loading: categoriesFetching(state),
+  };
+};
+
 class App extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    loading: PropTypes.bool.isRequired,
+  };
+
   render() {
-    const { classes } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className={classes.root}>
-        <Typography>
-          Hey there laughter
-        </Typography>
+        { loading && <CircularProgress className={classes.progressIcon} /> }
+        { !loading && <Categories /> }
       </div>
     );
   }
 }
 
-App.propTypes = {
-  classes: PropTypes.string.isRequired,
-};
-
-export default withStyles(styles)(App);
+const styledApp = withStyles(styles)(App);
+export default connect(mapStateToProps)(styledApp);

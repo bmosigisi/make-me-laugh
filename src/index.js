@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { create } from 'jss';
 import { MuiThemeProvider, jssPreset } from '@material-ui/core/styles';
 import React, { Component } from 'react';
@@ -6,9 +8,9 @@ import { JssProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 
 import App from './containers/App';
-import theme from './lib/theme';
 import rootSaga from './sagas';
 import buildStore from './store';
+import theme from './theme';
 
 const jss = create(jssPreset());
 jss.setup({ insertionPoint: document.head });

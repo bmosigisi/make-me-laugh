@@ -13,22 +13,12 @@ const createRequestTypes = (base) => {
   }, {});
 };
 
-export const CATEGORY = createRequestTypes('CATEGORY');
-export const JOKE = createRequestTypes('JOKE');
-
-export const GENERIC_TRIGGER = 'GENERIC_TRIGGER';
-export const GENERIC_START = 'GENERIC_START';
+export const FETCH_CATEGORIES = createRequestTypes('FETCH_CATEGORIES');
+export const FETCH_JOKE = createRequestTypes('FETCH_JOKE');
 
 // Action creators
-export const triggerFetchCategories = () => {
+export const triggerFetchJoke = () => {
   return {
-    type: CATEGORY[BEGIN],
-  };
-};
-
-export const fetchJokesSuccess = (payload) => {
-  return {
-    type: JOKE[SUCCESS],
-    payload,
+    type: FETCH_JOKE.BEGIN,
   };
 };

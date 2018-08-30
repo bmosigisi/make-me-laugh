@@ -1,11 +1,11 @@
 import red from '@material-ui/core/colors/red';
-import deepOrange from '@material-ui/core/colors/deepOrange';
+import lightGreen from '@material-ui/core/colors/lightGreen';
 import pink from '@material-ui/core/colors/pink';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export default createMuiTheme({
   palette: {
-    primary: deepOrange,
+    primary: lightGreen,
     secondary: pink,
     error: red,
   },

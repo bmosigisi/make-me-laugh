@@ -19,14 +19,14 @@ function* upstart() {
 
 // ------ Handlers --------
 function* handleFetchCategoriesFailure({ payload }) {
-  // Retry logic, if any, would go here. For now, we will just remove the loading icon and
-  // display an appropriate error message to the user, using some sort of alert or snackbar.
+  // We should remove the loading icon and display an appropriate error message to the user,
+  // using some sort of alert or snackbar. Retry logic, if any, would also go here.
   const message = 'Sorry, we could not fetch the categories.';
   console.log('Message', message, payload); // eslint-disable-line
   yield true;
 }
 
-function* handleFetchJokeFailure() {
+function* handleFetchJokeFailure({ payload }) {
   const message = 'Sorry, we could not find a joke in that category.';
   console.log('Message', message, payload); // eslint-disable-line
   yield true;

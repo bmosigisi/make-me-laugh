@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { List } from 'immutable';
 import MuiAvatar from '@material-ui/core/Avatar';
 import MuiCircularProgress from '@material-ui/core/CircularProgress';
@@ -33,6 +34,9 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  typography: {
+    margin: theme.spacing.unit,
+  },
   alignedLeft: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -42,6 +46,17 @@ const styles = theme => ({
     width: 60,
     height: 60,
     margin: theme.space.unit * 4,
+  },
+  listItem: {
+    margin: theme.space.unit,
+    backgroundColor: theme.palette.secondary[100],
+  },
+  listItemText: {
+    textTransform: 'capitalize',
+  },
+  progressContainer: {
+    width: '100%',
+    padding: theme.spacing.unit,
   },
 });
 
@@ -106,7 +121,11 @@ class Categories extends Component {
       >
         <MuiDialogTitle className={classes.centered}>Chuck Norris Fact</MuiDialogTitle>
         <MuiDialogContent className={classes.alignedLeft}>
-          {isFetchingJoke && <MuiCircularProgress />}
+          {isFetchingJoke && (
+            <div className={cx(classes.centered, classes.progressContainer)}>
+              <MuiCircularProgress />
+            </div>
+          )}
           {!isFetchingJoke && (
             <Fragment>
               <MuiAvatar
@@ -129,11 +148,17 @@ class Categories extends Component {
 
     return (
       <div className={classes.root}>
-        <MuiTypography variant="headline">Select a category</MuiTypography>
+        <MuiTypography variant="headline" className={classes.typography}>Learn a chuck fact</MuiTypography>
+        <MuiTypography variant="subheading" className={classes.typography}>Select a category</MuiTypography>
         <MuiList>
           { categories.valueSeq().map(category => (
-            <MuiListItem button key={category} onClick={this.handleListItemClick.bind(this, category)}>
-              <MuiListItemText primary={category} />
+            <MuiListItem
+              button
+              key={category}
+              onClick={this.handleListItemClick.bind(this, category)}
+              className={classes.listItem}
+            >
+              <MuiListItemText primary={category} className={classes.listItemText} />
             </MuiListItem>
           ))}
         </MuiList>

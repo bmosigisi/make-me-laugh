@@ -10,10 +10,12 @@ import Categories from '../containers/Categories';
 const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     padding: theme.space.unit * 4,
+  },
+  progressIcon: {
+    marginTop: theme.space.unit * 10,
   },
 });
 
@@ -34,7 +36,7 @@ class App extends Component {
 
     return (
       <div className={classes.root}>
-        { loading && <CircularProgress /> }
+        { loading && <CircularProgress className={classes.progressIcon} /> }
         { !loading && <Categories /> }
       </div>
     );

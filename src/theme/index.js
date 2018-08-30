@@ -12,4 +12,13 @@ export default createMuiTheme({
   space: {
     unit: 4,
   },
+  typography: {
+    fontFamily: [
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+  },
 });

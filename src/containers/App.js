@@ -1,16 +1,18 @@
+/* eslint-disable */
+
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-const styles = (theme) => ({
+const styles = {
   root: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
   },
-});
+};
 
 class App extends Component {
   render() {
@@ -27,7 +29,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  classes: PropTypes.string.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(App);

@@ -15,5 +15,5 @@ export const getJokeById = createSelector(
     if (!jokes || !activeCategory) return null;
 
     return jokes.getIn(['joke', 'jokes', activeCategory]);
-  };
+  },
 );

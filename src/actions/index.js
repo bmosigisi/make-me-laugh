@@ -8,9 +8,9 @@ const FAILURE = 'FAILURE';
 // This helper function
 const createRequestTypes = (base) => {
   return [BEGIN, SUCCESS, PROGRESS, FAILURE].reduce((acc, type) => {
-		acc[type] = `${base}_${type}`;
-		return acc;
-	}, {});
+    acc[type] = `${base}_${type}`;
+    return acc;
+  }, {});
 };
 
 export const CATEGORY = createRequestTypes('CATEGORY');

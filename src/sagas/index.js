@@ -1,5 +1,5 @@
+import { put, takeEvery, all, fork } from 'redux-saga/effects';
 import * as actions from '../actions';
-import { put, takeEvery, all, fork } from 'redux-saga/effects'
 
 // Handlers
 function* handleGeneric() {

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { create } from 'jss';
 import { MuiThemeProvider, jssPreset } from '@material-ui/core/styles';
 import React, { Component } from 'react';

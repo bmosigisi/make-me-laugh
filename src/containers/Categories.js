@@ -1,4 +1,5 @@
 import { List } from 'immutable';
+import MuiAvatar from '@material-ui/core/Avatar';
 import MuiCircularProgress from '@material-ui/core/CircularProgress';
 import MuiDialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -10,11 +11,12 @@ import MuiListItemText from '@material-ui/core/ListItemText';
 import MuiTypography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { triggerFetchJoke, triggerOpenDialog } from '../actions';
+import Transition from '../components/DialogTransition';
 import {
   categories,
   dialogOpen,
@@ -23,9 +25,25 @@ import {
   getIsFetchingJoke,
 } from '../selectors';
 
-const styles = {
+const styles = theme => ({
   root: {},
-};
+  dialogPaper: {},
+  centered: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  alignedLeft: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 60,
+    height: 60,
+    margin: theme.space.unit * 4,
+  },
+});
 
 const mapStateToProps = state => ({
   categories: categories(state),
@@ -55,7 +73,7 @@ class Categories extends Component {
     triggerOpenDialog: PropTypes.func.isRequired,
   };
 
-  static defaultProps: {
+  static defaultProps = {
     activeJoke: '',
     activeJokeIconUrl: '',
   };
@@ -74,17 +92,32 @@ class Categories extends Component {
   }
 
   renderJokeDialog() {
-    const { dialogOpen, activeJoke, isFetchingJoke } = this.props;
+    const { classes, dialogOpen, activeJoke, activeJokeIconUrl, isFetchingJoke } = this.props;
 
     return (
-      <MuiDialog open={dialogOpen} onClose={this.handleDialogClose.bind(this)}>
-        <MuiDialogTitle>Chuck Norris Fact</MuiDialogTitle>
-        <MuiDialogContent>
+      <MuiDialog
+        open={dialogOpen}
+        onClose={this.handleDialogClose.bind(this)}
+        classes={{
+          paper: classes.dialogPaper,
+        }}
+        TransitionComponent={Transition}
+        keepMounted
+      >
+        <MuiDialogTitle className={classes.centered}>Chuck Norris Fact</MuiDialogTitle>
+        <MuiDialogContent className={classes.alignedLeft}>
           {isFetchingJoke && <MuiCircularProgress />}
           {!isFetchingJoke && (
-            <MuiDialogContentText>
-              {activeJoke}
-            </MuiDialogContentText>
+            <Fragment>
+              <MuiAvatar
+                alt="Chuck Norris"
+                src={activeJokeIconUrl}
+                className={classes.avatar}
+              />
+              <MuiDialogContentText>
+                {activeJoke}
+              </MuiDialogContentText>
+            </Fragment>
           )}
         </MuiDialogContent>
       </MuiDialog>

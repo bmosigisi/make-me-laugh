@@ -27,15 +27,21 @@ import {
 } from '../selectors';
 
 const styles = theme => ({
-  root: {},
+  root: {
+    padding: theme.space.unit * 4,
+  },
   dialogPaper: {},
   centered: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  flexColumn: {
+    flexDirection: 'column',
+  },
   typography: {
     margin: theme.spacing.unit,
+    color: 'white',
   },
   alignedLeft: {
     display: 'flex',
@@ -47,12 +53,22 @@ const styles = theme => ({
     height: 60,
     margin: theme.space.unit * 4,
   },
+  list: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexFlow: 'row wrap',
+  },
   listItem: {
     margin: theme.space.unit,
-    backgroundColor: theme.palette.secondary[100],
+    backgroundColor: theme.palette.primary[400],
+    width: 200,
+    height: 70,
+    flex: 1,
   },
   listItemText: {
     textTransform: 'capitalize',
+    color: 'white',
   },
   progressContainer: {
     width: '100%',
@@ -148,9 +164,11 @@ class Categories extends Component {
 
     return (
       <div className={classes.root}>
-        <MuiTypography variant="headline" className={classes.typography}>Learn a chuck fact</MuiTypography>
-        <MuiTypography variant="subheading" className={classes.typography}>Select a category</MuiTypography>
-        <MuiList>
+        <div className={cx(classes.flexColumn, classes.centered)}>
+          <MuiTypography variant="headline" className={classes.typography}>Learn a chuck fact</MuiTypography>
+          <MuiTypography variant="subheading" className={classes.typography}>Select a category</MuiTypography>
+        </div>
+        <MuiList className={classes.list}>
           { categories.valueSeq().map(category => (
             <MuiListItem
               button
@@ -158,7 +176,7 @@ class Categories extends Component {
               onClick={this.handleListItemClick.bind(this, category)}
               className={classes.listItem}
             >
-              <MuiListItemText primary={category} className={classes.listItemText} />
+              <MuiListItemText primary={category} classes={{ primary: classes.listItemText }} />
             </MuiListItem>
           ))}
         </MuiList>

@@ -11,8 +11,9 @@ const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.space.unit * 4,
+    alignItems: 'flex-start',
+    height: '100vh',
+    backgroundColor: theme.palette.secondary['600'],
   },
   progressIcon: {
     marginTop: theme.space.unit * 10,
